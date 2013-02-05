@@ -1,0 +1,6 @@
+ApsimVersion = 7.4
+format = csv
+Title = MACH0001_1__1 ACMO
+yield,biomass,AnthesisDate,MaturityDate,HarvestDate,LAIMax,InCropRain,SumEP,SumNO3Uptake,SumLeachNO3
+(kg/ha),(kg/ha),(yyyy-mm-dd),(yyyy-mm-dd),(yyyy-mm-dd),(),(),(),(),()
+100,200,1982-01-29,1981-07-31,1981-08-01,2.2,995,162,138,6

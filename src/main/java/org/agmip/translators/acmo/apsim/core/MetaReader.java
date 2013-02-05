@@ -10,7 +10,7 @@ import au.com.bytecode.opencsv.CSVReader;
 public class MetaReader {
 	List<String[]> data = new ArrayList<String[]>();
 	List<String[]> header=new ArrayList<String[]>();
-	List<String> experiments = new ArrayList<String>();
+	List<String> runs = new ArrayList<String>();
 	
 	
 	public MetaReader(String file) throws IOException{
@@ -21,7 +21,10 @@ public class MetaReader {
 
 		data = reader.readAll();
 		for(String[] entry:data){
-			experiments.add(entry[1]);
+			if(entry[6].trim().equals(""))
+				runs.add(entry[5]);
+			else
+				runs.add(entry[5]+"-"+entry[6]);
 		}
 	}
 	
@@ -31,12 +34,12 @@ public class MetaReader {
 	
 	
 	public String[] getData(String exp){
-		int line = experiments.indexOf(exp);
+		int line = runs.indexOf(exp);
 		return data.get(line);
 	}
 	
-	public List<String> getExperiments(){
-		return experiments;
+	public List<String> getRuns(){
+		return runs;
 	}
 	
 	

@@ -28,7 +28,7 @@ public class ReaderTest {
 	
 	@Test
 	public void testListExperiments() {
-		List<String> list = meta.getExperiments();
+		List<String> list = meta.getRuns();
 		String [] expected = {"UFGA8201_1","UFGA8201_2","UFGA8201_3","UFGA8201_4","MACH0001_1__1","UFGA8201_6"};
 		assertEquals(list, Arrays.asList(expected));
 	}
