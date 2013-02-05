@@ -28,15 +28,15 @@ public class ReaderTest {
 	
 	@Test
 	public void testListExperiments() {
-		List<String> list = meta.listExperiments();
-		String [] expected = {"UFGA8201_1","UFGA8201_2","UFGA8201_3","UFGA8201_4","UFGA8201_5","UFGA8201_6"};
+		List<String> list = meta.getExperiments();
+		String [] expected = {"UFGA8201_1","UFGA8201_2","UFGA8201_3","UFGA8201_4","MACH0001_1__1","UFGA8201_6"};
 		assertEquals(list, Arrays.asList(expected));
 	}
 	
 	@Test
 	public void testGetLine() {
-		String[] result = meta.getLine("UFGA8201_5");
-		assertEquals("VEG STRESS LOW NITROGEN", result[6]);
+		String[] result = meta.getData("UFGA8201_4");
+		assertEquals("IRRIGATED HIGH NITROGEN", result[6]);
 	}
 	
 	

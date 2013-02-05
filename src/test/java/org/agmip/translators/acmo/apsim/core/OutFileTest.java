@@ -1,4 +1,4 @@
-package org.agmip.translators.acmo.apsim;
+package org.agmip.translators.acmo.apsim.core;
 
 import static org.junit.Assert.*;
 
