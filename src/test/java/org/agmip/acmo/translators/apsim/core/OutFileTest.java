@@ -1,11 +1,9 @@
-package org.agmip.translators.acmo.apsim.core;
+package org.agmip.acmo.translators.apsim.core;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
-import org.agmip.translators.acmo.apsim.core.MetaReader;
-import org.agmip.translators.acmo.apsim.core.OutFileReader;
 import org.junit.Before;
 import org.junit.Test;
 
