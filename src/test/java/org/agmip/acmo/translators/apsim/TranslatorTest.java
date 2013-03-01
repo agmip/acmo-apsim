@@ -1,6 +1,6 @@
 package org.agmip.acmo.translators.apsim;
 
-import org.agmip.acmo.translator.AcmoTranslator;
+import org.agmip.acmo.translators.AcmoTranslator;
 import org.agmip.acmo.translators.apsim.ApsimAcmo;
 import org.junit.Before;
 import org.junit.Test;
