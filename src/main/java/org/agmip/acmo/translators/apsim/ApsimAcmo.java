@@ -1,17 +1,20 @@
 package org.agmip.acmo.translators.apsim;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.agmip.acmo.translator.AcmoTranslator;
+import org.agmip.acmo.translators.AcmoTranslator;
 import org.agmip.acmo.translators.apsim.core.MetaReader;
 import org.agmip.acmo.translators.apsim.core.OutFileReader;
+//import static org.agmip.common.Functions.getStackTrace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import au.com.bytecode.opencsv.CSVWriter;
+import org.agmip.acmo.util.AcmoUtil;
 
 /**
  * @author <a href="mailto:ioannis@athanasiadis.info">Ioannis N.
@@ -20,12 +23,12 @@ import au.com.bytecode.opencsv.CSVWriter;
  */
 public class ApsimAcmo implements AcmoTranslator {
 	private static final Logger log = LoggerFactory.getLogger(ApsimAcmo.class);
-	public boolean execute(String sourceFolder, String destFolder) {
+	public File execute(String sourceFolder, String destFolder) {
 		try {
 			MetaReader meta = new MetaReader(sourceFolder + "/ACMO_meta.dat");
 
-			CSVWriter writer = new CSVWriter(new FileWriter(destFolder
-					+ "/ACMO_APSIM.csv"), ',');
+                        File output = AcmoUtil.createCsvFile(destFolder, "APSIM");;
+			CSVWriter writer = new CSVWriter(new FileWriter(output), ',');
 			writer.writeAll(meta.getHeader());
 
 			for (String exp : meta.getRuns()) {
@@ -56,10 +59,11 @@ public class ApsimAcmo implements AcmoTranslator {
 			}
 
 			writer.close();
-			return true;
+			return output;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+//			log.error(getStackTrace(e));
+                        e.printStackTrace();
+			return null;
 		}
 
 	}
