@@ -1,4 +1,4 @@
-package org.agmip.translators.acmo.apsim.core;
+package org.agmip.acmo.translators.apsim.core;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,6 +18,7 @@ public class OutFileReader {
 		title = ((myEntries.get(2))[0]).split("=")[1];
 		title = title.substring(0, title.lastIndexOf(" ")).trim();
 		data = myEntries.get(5);
+		reader.close();
 		
 	}
 
