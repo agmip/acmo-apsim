@@ -14,7 +14,7 @@ public class TranslatorTest {
 	@Test
 	public void testExecute() {
 	    AcmoTranslator acmo = new ApsimAcmo();
-		acmo.execute("src/test/resources/", "src/test/resources/");
+		acmo.execute("src/test/resources", "src/test/resources");
 	}
 
 }

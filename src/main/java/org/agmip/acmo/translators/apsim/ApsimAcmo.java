@@ -27,7 +27,7 @@ public class ApsimAcmo implements AcmoTranslator {
 		try {
 			MetaReader meta = new MetaReader(sourceFolder + "/ACMO_meta.dat");
 
-                        File output = AcmoUtil.createCsvFile(destFolder, "APSIM");;
+                        File output = AcmoUtil.createCsvFile(destFolder, "APSIM", sourceFolder + "/ACMO_meta.dat");
 			CSVWriter writer = new CSVWriter(new FileWriter(output), ',');
 			writer.writeAll(meta.getHeader());
 
