@@ -25,10 +25,10 @@ public class MetaReader {
 
 		data = reader.readAll();
 		for(String[] entry:data){
-			if(entry[6].trim().equals(""))
-				runs.add(entry[5]);
+			if(entry[7].trim().equals(""))
+				runs.add(entry[2]);
 			else
-				runs.add(entry[5]+"-"+entry[6]);
+				runs.add(entry[2]+"-"+entry[7]);
 		}
 		reader.close();
 	}
@@ -42,7 +42,7 @@ public class MetaReader {
 		// There needs to be a blank array or something returned here - CV
 		int line = runs.indexOf(exp);
 		if (line == -1) {
-			log.error("Entry {} not found");
+			log.error("Entry {} not found", exp);
 			String [] blank = {};
 			return blank;
 		} else {

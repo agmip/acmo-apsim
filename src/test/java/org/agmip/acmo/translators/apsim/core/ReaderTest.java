@@ -29,7 +29,7 @@ public class ReaderTest {
 	@Test
 	public void testGetLine() {
 		String[] result = meta.getData("UFGA8201_4-IRRIGATED HIGH NITROGEN");
-		assertEquals("IRRIGATED HIGH NITROGEN", result[6]);
+		assertEquals("IRRIGATED HIGH NITROGEN", result[7]);
 	}
 	
 	@Test

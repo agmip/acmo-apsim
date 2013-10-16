@@ -38,12 +38,14 @@ public class ApsimAcmo implements AcmoTranslator {
 					List<String> data = new ArrayList<String>();
 					data.addAll(Arrays.asList(meta.getData(exp)));
 
-					while (data.size() < 39) {
-						data.add("");
-					}
-
-					data.set(37, "APSIM");
-					data.set(38, out.getVersion());
+                                        // Since QuadUI will guarantee generating the meta data until Model the column, no check is required any more
+//					while (data.size() < 39) {
+//						data.add("");
+//					}
+//
+//					data.set(37, "APSIM");
+//					data.set(38, out.getVersion());
+                                        data.add(out.getVersion());
 
 					data.addAll(Arrays.asList(out.getData()));
 
