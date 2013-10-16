@@ -12,6 +12,8 @@ import au.com.bytecode.opencsv.CSVReader;
 
 public class MetaReader {
 	private static final Logger log = LoggerFactory.getLogger(MetaReader.class);
+        private int exNameIdx = -1;
+        private int trtNameIdx = -1;
 	List<String[]> data = new ArrayList<String[]>();
 	List<String[]> header=new ArrayList<String[]>();
 	List<String>   runs = new ArrayList<String>();
@@ -21,17 +23,34 @@ public class MetaReader {
 		CSVReader reader = new CSVReader(new FileReader(file),',','"');
 		header.add(reader.readNext());
 		header.add(reader.readNext());
-		header.add(reader.readNext());
+                String[] titles = reader.readNext();
+		header.add(titles);
+                setIndex(titles);
 
 		data = reader.readAll();
 		for(String[] entry:data){
-			if(entry[7].trim().equals(""))
-				runs.add(entry[2]);
-			else
-				runs.add(entry[2]+"-"+entry[7]);
+			if (entry[trtNameIdx].trim().equals("")) {
+                            runs.add(entry[exNameIdx]);
+                        } else {
+                            runs.add(entry[exNameIdx]+"-"+entry[trtNameIdx]);
+                        }
 		}
 		reader.close();
 	}
+        
+        private void setIndex(String[] titles) {
+            for (int i = 0; i < titles.length; i++) {
+                if (exNameIdx >= 0 && trtNameIdx >= 0) {
+                    return;
+                } else if (titles[i].toUpperCase().equals("EXNAME")) {
+                    exNameIdx = i;
+                } else if (titles[i].toUpperCase().equals("TRT_NAME")) {
+                    trtNameIdx = i;
+                }
+            }
+            exNameIdx = 2;  // For template version 4.0.1
+            trtNameIdx = 7; // For template version 4.0.1
+        }
 	
 	public List<String[]> getHeader(){
 		return header;
