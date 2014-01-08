@@ -48,8 +48,12 @@ public class MetaReader {
                     trtNameIdx = i;
                 }
             }
-            exNameIdx = 2;  // For template version 4.0.1
-            trtNameIdx = 7; // For template version 4.0.1
+            if (exNameIdx < 0) {
+                exNameIdx = 2;  // For template version 4.0.1
+            }
+            if (trtNameIdx < 0) {
+                trtNameIdx = 7;  // For template version 4.0.1
+            }
         }
 	
 	public List<String[]> getHeader(){
