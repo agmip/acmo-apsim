@@ -56,6 +56,7 @@ public class ApsimAcmo implements AcmoTranslator {
 					// cant read this result file - skip
 					log.error("No output found for {}", exp);
 //					System.out.println("Error: No output found for " + exp);
+                                        writer.writeNext(meta.getData(exp));
 				}
 
 			}
