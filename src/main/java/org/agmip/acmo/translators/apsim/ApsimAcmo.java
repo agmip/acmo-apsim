@@ -33,7 +33,7 @@ public class ApsimAcmo implements AcmoTranslator {
 
 			for (String exp : meta.getRuns()) {
 				try {
-					OutFileReader out = new OutFileReader(destFolder + "/" + exp + " ACMO.out");
+					OutFileReader out = new OutFileReader(destFolder + "/" + reiviseName(exp) + " ACMO.out");
 
 					List<String> data = new ArrayList<String>();
 					data.addAll(Arrays.asList(meta.getData(exp)));
@@ -70,4 +70,10 @@ public class ApsimAcmo implements AcmoTranslator {
 		}
 
 	}
+        
+    private String reiviseName(String exp) {
+        exp = exp.replace("/", "_");
+        exp = exp.replace("\\", "_");
+        return exp;
+    }
 }
