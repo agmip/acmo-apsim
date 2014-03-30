@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import org.agmip.acmo.util.AcmoUtil;
+import org.agmip.common.Functions;
 
 /**
  * @author <a href="mailto:ioannis@athanasiadis.info">Ioannis N.
@@ -64,16 +65,14 @@ public class ApsimAcmo implements AcmoTranslator {
 			writer.close();
 			return output;
 		} catch (Exception e) {
-//			log.error(getStackTrace(e));
-                        e.printStackTrace();
+			log.error(Functions.getStackTrace(e));
 			return null;
 		}
 
 	}
         
     private String reiviseName(String exp) {
-        exp = exp.replace("/", "_");
-        exp = exp.replace("\\", "_");
+        exp = exp.replaceAll("[/\\\\*|?:<>\"]", "_");
         return exp;
     }
 }
