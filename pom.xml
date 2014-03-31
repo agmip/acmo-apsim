@@ -3,14 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.agmip.translators.acmo</groupId>
   <artifactId>acmo-apsim</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>AgMIP APSIM ACMO Translator</name>
   <url>http://www.agmip.org/</url>
 
   <parent>
     <groupId>org.agmip.translators</groupId>
     <artifactId>translator-dist</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
   </parent>
 
   <properties>
@@ -67,6 +67,6 @@
     <connection>scm:git:git://github.com/agmip/acmo-apsim.git</connection>
     <developerConnection>scm:git:git@github.com:agmip/acmo-apsim.git</developerConnection>
     <url>https://github.com/agmip/acmo-apsim</url>
-    <tag>acmo-apsim-1.0.0</tag>
+    <tag>acmo-apsim-1.0.1</tag>
   </scm>
 </project>
