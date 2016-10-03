@@ -14,6 +14,7 @@ public class MetaReader {
 	private static final Logger log = LoggerFactory.getLogger(MetaReader.class);
         private int exNameIdx = -1;
         private int trtNameIdx = -1;
+        private int toolVersionIdx = -1;
 	List<String[]> data = new ArrayList<String[]>();
 	List<String[]> header=new ArrayList<String[]>();
 	List<String>   runs = new ArrayList<String>();
@@ -40,19 +41,24 @@ public class MetaReader {
         
         private void setIndex(String[] titles) {
             for (int i = 0; i < titles.length; i++) {
-                if (exNameIdx >= 0 && trtNameIdx >= 0) {
+                if (exNameIdx >= 0 && trtNameIdx >= 0 && toolVersionIdx >=0) {
                     return;
                 } else if (titles[i].toUpperCase().equals("EXNAME")) {
                     exNameIdx = i;
                 } else if (titles[i].toUpperCase().equals("TRT_NAME")) {
                     trtNameIdx = i;
+                } else if (titles[i].toUpperCase().equals("TOOL_VERSION")) {
+                    toolVersionIdx = i;
                 }
             }
             if (exNameIdx < 0) {
-                exNameIdx = 2;  // For template version 4.0.1
+                exNameIdx = 2;  // For template version 4.1.1
             }
             if (trtNameIdx < 0) {
-                trtNameIdx = 7;  // For template version 4.0.1
+                trtNameIdx = 9;  // For template version 4.1.1
+            }
+            if (toolVersionIdx < 0) {
+                toolVersionIdx = 50;  // For template version 4.1.1
             }
         }
 	
@@ -85,6 +91,21 @@ public class MetaReader {
 			System.out.println();
 		}
 	}
+        
+        public void addAcmoVersion(String acmoVer) {
+            for (String[] entry : data) {
+                if (entry[toolVersionIdx].endsWith("acmoui=")) {
+                    entry[toolVersionIdx] += acmoVer;
+                } else if (entry[toolVersionIdx].contains("acmoui=")) {
+                    entry[toolVersionIdx] = entry[toolVersionIdx].replaceFirst("acmoui=", "acmoui=" + acmoVer);
+                } else {
+                    if (!entry[toolVersionIdx].trim().equals("")) {
+                        entry[toolVersionIdx] += "|";
+                    }
+                    entry[toolVersionIdx] += "acmoui=" + acmoVer;
+                }
+            }
+        }
 	
 
 }
