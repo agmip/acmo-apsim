@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import au.com.bytecode.opencsv.CSVWriter;
+import org.agmip.acmo.translators.AcmoVersionRecordable;
 import org.agmip.acmo.util.AcmoUtil;
 import org.agmip.common.Functions;
 
@@ -22,11 +23,13 @@ import org.agmip.common.Functions;
  *         Athanasiadis</a>
  * 
  */
-public class ApsimAcmo implements AcmoTranslator {
+public class ApsimAcmo implements AcmoTranslator, AcmoVersionRecordable {
 	private static final Logger log = LoggerFactory.getLogger(ApsimAcmo.class);
+        private String acmoVer = "";
 	public File execute(String sourceFolder, String destFolder) {
 		try {
 			MetaReader meta = new MetaReader(sourceFolder + "/ACMO_meta.dat");
+                        meta.addAcmoVersion(acmoVer);
 
                         File output = AcmoUtil.createCsvFile(destFolder, "APSIM", sourceFolder + "/ACMO_meta.dat");
 			CSVWriter writer = new CSVWriter(new FileWriter(output), ',');
@@ -74,5 +77,9 @@ public class ApsimAcmo implements AcmoTranslator {
     private String reiviseName(String exp) {
         exp = exp.replaceAll("[/\\\\*|?:<>\"]", "_");
         return exp;
+    }
+
+    public void recordAcmoVersion(String acmoVer) {
+        this.acmoVer = acmoVer;
     }
 }
