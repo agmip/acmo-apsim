@@ -51,7 +51,7 @@ public class ApsimAcmo implements AcmoTranslator, AcmoVersionRecordable {
 //					data.set(38, out.getVersion());
                                         data.add(out.getVersion());
 
-					data.addAll(Arrays.asList(out.getData()));
+					data.addAll(out.getData(meta.getOutputTitles()));
 
 					writer.writeNext(data.toArray(new String[data.size()]));
 					log.debug("Processed output for {}",exp);

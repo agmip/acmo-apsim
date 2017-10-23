@@ -9,12 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import au.com.bytecode.opencsv.CSVReader;
+import java.util.Arrays;
 
 public class MetaReader {
 	private static final Logger log = LoggerFactory.getLogger(MetaReader.class);
         private int exNameIdx = -1;
         private int trtNameIdx = -1;
         private int toolVersionIdx = -1;
+        private final String[] outputTitles;
 	List<String[]> data = new ArrayList<String[]>();
 	List<String[]> header=new ArrayList<String[]>();
 	List<String>   runs = new ArrayList<String>();
@@ -27,6 +29,13 @@ public class MetaReader {
                 String[] titles = reader.readNext();
 		header.add(titles);
                 setIndex(titles);
+                int outputStartIdx = this.toolVersionIdx + 3;
+                if (outputStartIdx < titles.length) {
+                    outputTitles = Arrays.copyOfRange(titles, outputStartIdx, titles.length);
+                } else {
+                    outputTitles = new String[]{};
+                }
+                
 
 		data = reader.readAll();
 		for(String[] entry:data){
@@ -106,6 +115,8 @@ public class MetaReader {
                 }
             }
         }
-	
-
+        
+        public String[] getOutputTitles() {
+            return this.outputTitles;
+        }
 }

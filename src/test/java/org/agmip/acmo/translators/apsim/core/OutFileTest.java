@@ -21,7 +21,7 @@ public class OutFileTest {
 	public void test() {
 		assertEquals("7.4",outFile.getVersion());
 		assertEquals("MACH0001_1__1",outFile.getTitle());
-        System.out.println(Arrays.asList(outFile.getData()));		
+        System.out.println(outFile.getData());		
 		
 	}
 
